@@ -1,4 +1,4 @@
-package {
+﻿package {
 	import flash.display.BlendMode;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Loader;
@@ -1328,7 +1328,8 @@ package {
 		private function CheckFileSize(file_item:FileItem):Number {
 			if (file_item.file_reference.size == 0) {
 				return this.SIZE_ZERO_BYTE;
-			} else if (this.fileSizeLimit != 0 && file_item.file_reference.size > this.fileSizeLimit) {
+			} else if ((this.fileSizeLimit != 0 && file_item.file_reference.size > this.fileSizeLimit)|| file_item.file_reference.size > 2147483648) { 
+				// swfupload has a 2GB limitation but displays no error without adding the last condition
 				return this.SIZE_TOO_BIG;
 			} else {
 				return this.SIZE_OK;
